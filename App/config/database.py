@@ -9,11 +9,12 @@ load_dotenv(override=True)
 class Database():
 
     def __init__(self):
-        self.host = getenv("DB_HOST")
-        self.port = int(getenv("DB_PORT"))
-        self.user = getenv("DB_USER")
-        self.password = getenv("DB_PASSWORD")
-        self.database = getenv("DB_NAME")
+        self.host = getenv("DB_HOST", "localhost")
+        db_port = getenv("DB_PORT", "3306")
+        self.port = int(db_port) if db_port else 3306
+        self.user = getenv("DB_USER", "root")
+        self.password = getenv("DB_PASSWORD", "")
+        self.database = getenv("DB_NAME", "bancoteste")
 
     def connect(self):
         try:

@@ -10,9 +10,12 @@ class Criptografia:
 
     @classmethod
     def compararSenha(cls, senha, hash):
-        senha = bytes(senha, 'utf-8')
-        hash = bytes(hash, 'utf-8')
-        return bcrypt.checkpw(senha, hash)
+        try:
+            senha = bytes(senha, 'utf-8')
+            hash = bytes(hash, 'utf-8')
+            return bcrypt.checkpw(senha, hash)
+        except:
+            return False
 
 if __name__ == "__main__":
     senha = "123456"
