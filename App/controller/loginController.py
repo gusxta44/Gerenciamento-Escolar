@@ -1,3 +1,6 @@
+from App.model.userModel import Usuario 
+from App.utils.criptografia import Criptografia
+from App.config.database import Database
 
 __currentUser = {
     "id": None,
@@ -13,11 +16,13 @@ def logout():
     __setCurrentUser(None)
 
 def __setCurrentUser(id):
-    __currentUser['id'] = id
+    __currentUser["id"] = id
 
 def validateLogin(email, password):
-    if email == "usuario" and password == "123":
-        __setCurrentUser(1)
+    user = Usuario.login(email)
+    result_senha = Criptografia.compararSenha(password, user.senha)
+    if user.id and user.email == email and user.senha == password:
+        __setCurrentUser(user.id)
         return True
+    
     return False
-
