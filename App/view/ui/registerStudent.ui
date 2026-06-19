@@ -61,7 +61,17 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: #3f50c7;  
 }
-</string>
+
+QDateEdit::down-arrow {
+    image: url(:setas/image-arrow.png);
+	width: 18px;
+    height: 18px;
+}
+
+QDateEdit::drop-down {
+    border: none;
+    width: 30px;
+}</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
@@ -228,6 +238,8 @@ QPushButton:pressed {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="imagens/imagens.qrc"/>
+ </resources>
  <connections/>
 </ui>
