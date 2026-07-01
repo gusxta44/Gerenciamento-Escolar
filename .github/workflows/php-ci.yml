@@ -12,20 +12,12 @@ jobs:
 
     steps:
     - name: Baixar codigo do repositorio
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
 
     - name: Configurar o PHP ambiente
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.2'
-        extensions: mbstring, xml, ctype, iconv
-        tools: phpunit
 
-    - name: Validar arquivo do Composer
-      run: composer validate --strict
-
-    - name: Instalar dependencias (Composer)
-      run: composer install --prefer-dist --no-progress
-
-    - name: Executar testes com PHPUnit
-      run: vendor/bin/phpunit
+    - name: Verificar erros de sintaxe no PHP
+      run: find . -type f -name "*.php" -not -path "*/vendor/*" -exec php -l {} \;

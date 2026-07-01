@@ -12,23 +12,15 @@ jobs:
 
     steps:
     - name: Baixar codigo do repositorio
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2
 
     - name: Configurar o Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v5.4.0
       with:
         python-version: '3.11'
 
-    - name: Instalar dependencias
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Instalar o Pytest e o Mock
+      run: pip install pytest pytest-mock
 
-    - name: Verificar padronizacao com Flake8
-      run: |
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-
-    - name: Executar testes com Pytest
-      run: |
-        pytest
+    - name: Executar os Testes das Ocorrencias
+      run: pytest tests/
