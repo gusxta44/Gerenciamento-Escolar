@@ -4,7 +4,6 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import pytest
-# IMPORTAÇÃO CORRIGIDA: Puxa o Controller da pasta controller!
 from App.controller.reportController import ReportController
 
 def test_deve_barrar_criacao_de_ocorrencia_sem_descricao():
