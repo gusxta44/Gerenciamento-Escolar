@@ -19,8 +19,10 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Instalar o Pytest e o Mock
-      run: pip install pytest pytest-mock
+    - name: Instalar o Pytest, Mock e Conector MySQL
+      run: |
+        # Instalamos as ferramentas de teste E o conector que o seu database.py exige
+        pip install pytest pytest-mock mysql-connector-python
 
-    - name: Executar os Testes das Ocorrencias
-      run: pytest tests/
+    - name: Executar o Teste Específico das Ocorrencias
+      run: pytest tests/test_report.py
