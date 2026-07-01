@@ -1,31 +1,31 @@
-name: CI - PHP 
+name: CI - PHP
 
-on:  
-push:  
-branches: \[ "main", "developer" \]  
-pull\_request:  
-branches: \[ "main" \] 
+on:
+  push:
+    branches: [ "main", "developer", "teste" ]
+  pull_request:
+    branches: [ "main" ]
 
-jobs:  
-php-pipeline:  
-runs-on: ubuntu-latest 
+jobs:
+  php-pipeline:
+    runs-on: ubuntu-latest
 
-steps:  
-\- name: Baixar codigo do repositorio  
-uses: actions/checkout@v4 
+    steps:
+    - name: Baixar codigo do repositorio
+      uses: actions/checkout@v4
 
-\- name: Configurar o PHP ambiente  
-uses: shivammathur/setup-php@v2  
-with:  
-php-version: '8.2'  
-extensions: mbstring, xml, ctype, iconv # adicione extensões se precisar  
-tools: phpunit 
+    - name: Configurar o PHP ambiente
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mbstring, xml, ctype, iconv
+        tools: phpunit
 
-\- name: Validar arquivo do Composer  
-run: composer validate --strict 
+    - name: Validar arquivo do Composer
+      run: composer validate --strict
 
-\- name: Instalar dependencias (Composer)  
-run: composer install --prefer-dist --no-progress 
+    - name: Instalar dependencias (Composer)
+      run: composer install --prefer-dist --no-progress
 
-\- name: Executar testes com PHPUnit  
-run: vendor/bin/phpunit
+    - name: Executar testes com PHPUnit
+      run: vendor/bin/phpunit
